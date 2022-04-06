@@ -1,13 +1,11 @@
 package com.furniture.ui.home.profile
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.furniture.R
-import com.furniture.databinding.EditInterestFragmentBinding
 import com.furniture.databinding.FragmentProfileBinding
 import com.furniture.ui.home.HomeViewModel
 import dagger.android.support.DaggerFragment
@@ -43,6 +41,10 @@ class ProfileFragment : DaggerFragment() {
 
         binding.ivInterest.setOnClickListener {
             view.findNavController().navigate(R.id.action_profile_to_editInterestFragment)
+        }
+
+        binding.txtBudgesCount.setOnClickListener {
+            view.findNavController().navigate(R.id.action_profile_to_myBudgesFragment)
         }
 
     }

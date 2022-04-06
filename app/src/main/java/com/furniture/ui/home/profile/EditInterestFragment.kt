@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.adapters.ViewGroupBindingAdapter.setListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.furniture.R
@@ -33,10 +34,19 @@ class EditInterestFragment : DaggerFragment(R.layout.edit_interest_fragment) {
         binding = EditInterestFragmentBinding.inflate(inflater, container, false)
         binding.vm = viewModels
         return binding.root
+
+
+    }
+
+    private fun setListener() {
+        binding.txtBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setListener()
         binding.vm = viewModels
         val recyclerview = binding.rvTopics
 //        viewModels.isUser.set(args.isUser)

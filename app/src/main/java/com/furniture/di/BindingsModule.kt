@@ -1,20 +1,26 @@
 package com.furniture.di
 
 import com.furniture.VideoActivity
+import com.furniture.ui.appointment.AppointmentsFragment
 import com.furniture.ui.banksettings.MyBankSettings
 import com.furniture.ui.banksettings.activities.AddBankAccountActivity
 import com.furniture.ui.callhistory.CallHistory
 import com.furniture.ui.callhistory.activities.CallInvoiceActivity
+import com.furniture.ui.drawer.bookmark.BookmarkFragment
+import com.furniture.ui.drawer.settings.SettingsFragment
 import com.furniture.ui.editpersonalinfo.EditPersonalInfo
 import com.furniture.ui.helpsupport.ChatSupportActivity
 import com.furniture.ui.helpsupport.HelpSupport
 import com.furniture.ui.home.HomeActivity
 import com.furniture.ui.home.homeFragment.HomeFragment
-import com.furniture.ui.home.profile.EditInterestFragment
-import com.furniture.ui.home.profile.ProfileFragment
+import com.furniture.ui.home.notifications.NotificationFragment
+import com.furniture.ui.home.profile.*
 import com.furniture.ui.homefrag.HomesFragment
+import com.furniture.ui.homefrag.InfluencerHomeFragment
 import com.furniture.ui.loginSignUp.MainActivity
-import com.furniture.ui.loginSignUp.StartFragment
+import com.furniture.ui.loginSignUp.login.ForgetFragment
+import com.furniture.ui.loginSignUp.login.ForgetPasswordFragment
+import com.furniture.ui.loginSignUp.login.FragmentResetPassword
 import com.furniture.ui.loginSignUp.login.LoginFragment
 import com.furniture.ui.loginSignUp.signup.CreateProfileFragment
 import com.furniture.ui.loginSignUp.signup.SignUpFragment
@@ -32,9 +38,13 @@ import com.furniture.ui.mywallet.fragments.EarningFragment
 import com.furniture.ui.mywallet.fragments.ExpenseFragment
 import com.furniture.ui.mywallet.fragments.RefillFragment
 import com.furniture.ui.reportabuse.ReportAbuseActivity
+import com.furniture.ui.search.SearchFragment
 import com.furniture.ui.settings.Settings
 import com.furniture.ui.tellusmore.TellUsMore
 import com.furniture.utlis.BackToHomeDialog
+import com.furniture.utlis.CallDialog
+import com.furniture.utlis.DeleteAppointmentDialog
+import com.furniture.utlis.ExtendTimeDialog
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -112,18 +122,57 @@ abstract class BindingsModule {
     abstract fun signupFragment(): SignUpFragment
 
     @ContributesAndroidInjector
+    abstract fun searchFragment(): SearchFragment
+
+    @ContributesAndroidInjector
+    abstract fun myBudgesFragment(): MyBudgesFragment
+
+    @ContributesAndroidInjector
+    abstract fun forgetPasswordFragment(): ForgetPasswordFragment
+
+    @ContributesAndroidInjector
+    abstract fun forgetFragment(): ForgetFragment
+
+    @ContributesAndroidInjector
+    abstract fun resetPasswordFragment(): FragmentResetPassword
+
+    @ContributesAndroidInjector
+    abstract fun notificationFragment(): NotificationFragment
+
+    @ContributesAndroidInjector
     abstract fun createProfileFragment(): CreateProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun appointmentsFragment(): AppointmentsFragment
+
+    @ContributesAndroidInjector
+    abstract fun homeInlfuenceFragment(): InfluencerHomeFragment
+
+    @ContributesAndroidInjector
+    abstract fun callFragment(): CallFragment
+
+    @ContributesAndroidInjector
+    abstract fun callEndFragment(): CallEndFragment
 
 
     @ContributesAndroidInjector
     abstract fun backToHomeDialog(): BackToHomeDialog
 
+    @ContributesAndroidInjector
+    abstract fun callDialog(): CallDialog
 
     @ContributesAndroidInjector
-    abstract fun startFragment(): StartFragment
+    abstract fun extendTimeDialog(): ExtendTimeDialog
+
+    @ContributesAndroidInjector
+    abstract fun deleteAppointmentDialog(): DeleteAppointmentDialog
+
 
     @ContributesAndroidInjector
     abstract fun profileFragment(): ProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun profileInfluencerFragment(): InfluencerProfileFragment
 
 
     @ContributesAndroidInjector
@@ -151,5 +200,12 @@ abstract class BindingsModule {
     @ContributesAndroidInjector
     abstract fun expenseFragment(): ExpenseFragment
 
+
+    //drawer
+    @ContributesAndroidInjector
+    abstract fun bookmarkfragment(): BookmarkFragment
+
+    @ContributesAndroidInjector
+    abstract fun settingFragment(): SettingsFragment
 
 }

@@ -1,7 +1,6 @@
 package com.furniture.ui.home
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.furniture.data.apis.WebService
 import com.furniture.data.model.*
@@ -12,8 +11,6 @@ import com.furniture.data.repos.UserRepository
 import com.furniture.di.SingleLiveEvent
 import com.furniture.ui.loginSignUp.MainActivity
 import com.furniture.ui.mycards.data.addCardData
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,9 +46,84 @@ class HomeViewModel @Inject constructor(private val webService: WebService) : Vi
     val paymentStatus by lazy { SingleLiveEvent<Resource<Any>>() }
 
 
+//    fun validateCouponCode(hashMap: HashMap<String, String>) {
+//        couponApply.value = Resource.loading()
+//        webService.validateCouponCodeApi(hashMap)
+//            .enqueue(object : Callback<ApiResponse<CartResponseModel>> {
+//                override fun onResponse(
+//                    call: Call<ApiResponse<CartResponseModel>>,
+//                    response: Response<ApiResponse<CartResponseModel>>
+//                ) {
+//
+//                    if (response.isSuccessful) {
+//                        if (response.body()?.status == 200)
+//                            couponApply.value = Resource.success(response.body()?.detail)
+//                        else couponApply.value = Resource.error(
+//                            ApiUtils.getError(
+//                                response.code(),
+//                                response.body()?.message
+//                            )
+//                        )
+//
+//
+//                    } else {
+//                        couponApply.value = Resource.error(
+//                            ApiUtils.getError(
+//                                response.code(),
+//                                response.errorBody()?.string()
+//                            )
+//                        )
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ApiResponse<CartResponseModel>>, t: Throwable) {
+//                    updateStatus.value = Resource.error(ApiUtils.failure(t))
+//                }
+//            })
+//    }
+
+
+//    fun getNotificationListApi() {
+//        notifications.value = Resource.loading()
+//        webService.getNotificationListApi()
+//            .enqueue(object : Callback<ApiResponse<NotificationResponse>> {
+//                override fun onResponse(
+//                    call: Call<ApiResponse<NotificationResponse>>,
+//                    response: Response<ApiResponse<NotificationResponse>>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        if (response.body()?.status == 200)
+//                            notifications.value = Resource.success(response.body()?.detail)
+//                        else notifications.value = Resource.error(
+//                            ApiUtils.getError(
+//                                response.code(),
+//                                response.body()?.message
+//                            )
+//                        )
+//                    } else {
+//                        notifications.value = Resource.error(
+//                            ApiUtils.getError(
+//                                response.code(),
+//                                response.errorBody()?.string()
+//                            )
+//                        )
+//                    }
+//                }
+//
+//                override fun onFailure(
+//                    call: Call<ApiResponse<NotificationResponse>>,
+//                    t: Throwable
+//                ) {
+//                    notifications.value = Resource.error(ApiUtils.failure(t))
+//                }
+//
+//            })
+//    }
+
+
     fun addCard(hashMap: HashMap<String, String>) {
         addCard.value = Resource.loading()
-        webService.addCard("Bearer " + MainActivity.retrivedToken,hashMap)
+        webService.addCard("Bearer " + MainActivity.retrivedToken, hashMap)
             .enqueue(object : Callback<ApiResponse<addCardData>> {
                 override fun onResponse(
                     call: Call<ApiResponse<addCardData>>,
@@ -85,7 +157,5 @@ class HomeViewModel @Inject constructor(private val webService: WebService) : Vi
 
             })
     }
-
-
 
 }
